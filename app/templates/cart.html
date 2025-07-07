@@ -19,7 +19,7 @@
     .cart-list {
         list-style: none;
         padding: 0;
-        max-width: 600px;
+        max-width: 700px;
         margin: 0 auto 40px;
         background: white;
         border-radius: 16px;
@@ -27,6 +27,9 @@
     }
 
     .cart-list li {
+        display: flex;
+        align-items: center;
+        gap: 16px;
         padding: 15px 20px;
         border-bottom: 1px solid #eee;
         font-size: 18px;
@@ -35,6 +38,35 @@
 
     .cart-list li:last-child {
         border-bottom: none;
+    }
+
+    .cart-list img {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    .cart-info {
+        flex-grow: 1;
+    }
+
+    .cart-subtotal {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .cart-total {
+        max-width: 700px;
+        margin: 0 auto 30px;
+        text-align: right;
+        font-size: 20px;
+        font-weight: bold;
+        color: #4B3D24;
+        padding: 10px 20px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     }
 
     .cart-form {
@@ -92,9 +124,20 @@
     {% if cart %}
     <ul class="cart-list">
         {% for item in cart %}
-        <li>{{ item }}</li>
+        <li>
+            <img src="{{ url_for('static', filename=item.image) }}">
+            <div class="cart-info">
+                <div><strong>{{ item.name }}</strong></div>
+                <div>Jumlah: {{ item.quantity }} x Rp{{ item.price }}</div>
+                <div class="cart-subtotal">Subtotal: Rp{{ item.price * item.quantity }}</div>
+            </div>
+        </li>
         {% endfor %}
     </ul>
+
+    <div class="cart-total">
+        Total: Rp{{ total_price }}
+    </div>
 
     <form method="POST" class="cart-form">
         <label for="seat">Pilih Nomor Kursi (1-20):</label><br>
@@ -114,4 +157,5 @@
     <p class="empty-message">Belum ada pesanan.</p>
     {% endif %}
 </section>
+
 {% endblock %}

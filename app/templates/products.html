@@ -76,16 +76,59 @@
     <h2 class="products-title">Produk Kopi Lokal Kami</h2>
 
     <div class="products-grid">
-        {% for i in range(1, 7) %}
         <div class="product-card">
-            <img src="{{ url_for('static', filename='images/kopi{{ i }}.jpg') }}" alt="Kopi {{ i }}" class="product-image">
+            <img src="{{ url_for('static', filename='images/Kopi Gayo Aceh.jpg') }}" alt="Kopi Gayo" class="product-image">
             <div class="product-content">
-                <div class="product-name">Kopi Nusantara {{ i }}</div>
-                <div class="product-desc">Rasa khas dari daerah penghasil kopi terbaik Indonesia. Aromatik, pekat, dan memikat.</div>
-                <div class="product-price">Rp {{ 15000 + (i * 2000) }}</div>
+                <div class="product-name">Kopi Gayo Aceh</div>
+                <div class="product-desc">Kopi arabika khas dataran tinggi Gayo dengan rasa floral dan body seimbang.</div>
+                <div class="product-price">Rp 250.000</div>
             </div>
         </div>
-        {% endfor %}
+
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/Kopi Toraja.jpg') }}" alt="Kopi Toraja" class="product-image">
+            <div class="product-content">
+                <div class="product-name">Kopi Toraja</div>
+                <div class="product-desc">Dikenal dengan cita rasa earthy dan aftertaste yang lembut serta elegan.</div>
+                <div class="product-price">Rp 350.000</div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/Kopi Kintamani Bali.jpg') }}" alt="Kopi Kintamani" class="product-image">
+            <div class="product-content">
+                <div class="product-name">Kopi Kintamani Bali</div>
+                <div class="product-desc">Rasa fruity khas citrus dari tanah vulkanik dataran tinggi Bali.</div>
+                <div class="product-price">Rp 290.000</div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/Kopi Java Preanger.jpg') }}" alt="Kopi Java" class="product-image">
+            <div class="product-content">
+                <div class="product-name">Kopi Java Preanger</div>
+                <div class="product-desc">Kopi bersejarah dari Jawa Barat dengan aroma klasik dan body medium.</div>
+                <div class="product-price">Rp 300.000</div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/Kopi Flores Bajawa.webp') }}" alt="Kopi Flores" class="product-image">
+            <div class="product-content">
+                <div class="product-name">Kopi Flores Bajawa</div>
+                <div class="product-desc">Dikenal dengan aroma karamel, rasa cokelat, dan keasaman ringan.</div>
+                <div class="product-price">Rp 400.000</div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="{{ url_for('static', filename='images/Kopi Wamena Papua.jpg') }}" alt="Kopi Papua" class="product-image">
+            <div class="product-content">
+                <div class="product-name">Kopi Wamena Papua</div>
+                <div class="product-desc">Kopi organik dari pegunungan Papua dengan rasa clean dan manis alami.</div>
+                <div class="product-price">Rp 450.000</div>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}

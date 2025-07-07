@@ -1,111 +1,111 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- Font klasik -->
+
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
     .menu-section {
-        background-color: #FAF5F0;
-        padding: 80px 40px;
-        min-height: 100vh;
-        font-family: Arial, sans-serif;
+        background-color: #F6EEE3;
+        padding: 80px 30px;
+        font-family: 'Arial', sans-serif;
     }
 
     .menu-title {
         text-align: center;
         font-size: 48px;
-        font-family: 'Great Vibes', cursive;
         color: #4B3D24;
-        margin-bottom: 60px;
+        font-family: 'Great Vibes', cursive;
+        margin-bottom: 40px;
     }
 
     .menu-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 30px;
     }
 
-    .menu-card {
-        background-color: #fff;
+    .coffee-card {
+        width: 250px;
+        background-color: white;
         border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         overflow: hidden;
-        display: flex;
-        flex-direction: column;
         transition: transform 0.3s ease;
     }
 
-    .menu-card:hover {
+    .coffee-card:hover {
         transform: translateY(-5px);
     }
 
-    .menu-img {
-        height: 200px;
-        background-size: cover;
-        background-position: center;
+    .coffee-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
     }
 
-    .menu-content {
-        padding: 20px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+    .coffee-info {
+        padding: 16px;
+        text-align: center;
     }
 
-    .menu-content h3 {
+    .coffee-info h4 {
+        margin: 0;
         font-size: 20px;
         color: #4B3D24;
-        margin-bottom: 10px;
+        font-family: 'Arial', sans-serif;
     }
 
-    .menu-content label {
+    .coffee-info p {
+        margin: 8px 0;
+        color: #555;
         font-size: 14px;
-        color: #333;
     }
 
-    .menu-content input[type="number"] {
+    .coffee-info input[type="number"] {
         width: 60px;
         padding: 4px;
-        margin: 10px 0;
-        border-radius: 6px;
-        border: 1px solid #ccc;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 14px;
     }
 
-    .menu-content button {
+    .coffee-info button {
+        margin-top: 10px;
         background-color: #4B3D24;
         color: white;
         border: none;
-        padding: 10px;
+        padding: 10px 16px;
         border-radius: 8px;
         font-size: 14px;
         cursor: pointer;
-        align-self: flex-start;
+        font-family: 'Arial', sans-serif;
     }
 
-    .menu-content button:hover {
+    .coffee-info button:hover {
         background-color: #3a2f1b;
     }
 </style>
 
 <section class="menu-section">
-    <h2 class="menu-title">Menu Gila Kopi</h2>
-
+    <h2 class="menu-title">Menu Kopi</h2>
     <div class="menu-grid">
-        {% for i in range(1, 11) %}
-        <form method="POST" action="{{ url_for('main.menu') }}">
-            <div class="menu-card">
-                <div class="menu-img" style="background-image: url('{{ url_for('static', filename='images/kopi.jpg') }}');"></div>
-                <div class="menu-content">
-                    <h3>Kopi {{ i }}</h3>
-                    <input type="hidden" name="item" value="Kopi {{ i }}">
-                    <label>Jumlah:</label>
-                    <input type="number" name="quantity" value="1" min="1" max="10">
+        {% for item in coffee_data %}
+        <div class="coffee-card">
+            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+            <div class="coffee-info">
+                <h4>{{ item.name }}</h4>
+                <p>Harga: Rp{{ "{:,.0f}".format(item.price) }}</p>
+                <form method="POST">
+                    <input type="hidden" name="item" value="{{ item.name }}">
+                    <input type="number" name="quantity" value="1" min="1" required>
+                    <br>
                     <button type="submit">Order</button>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
         {% endfor %}
     </div>
 </section>
+
 {% endblock %}
